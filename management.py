@@ -7,21 +7,37 @@ def create_id(spartans_dict):
         return str(current_id)
     return "1"
 
-def add(spartans_dict, spartan):
+def is_valid(api_data):
+    if len(api_data["first_name"]) <= 2:
+        return False
+    if len(api_data["last_name"]) <= 2:
+        return False
+    if 1900 > int(api_data["birth_year"]) or int(api_data["birth_year"]) > 2004:
+        return False
+    if int(api_data["birth_month"]) <=0   or int(api_data["birth_month"]) > 12:
+        return False
+    if int(api_data["birth_day"]) <= 0 or int(api_data["birth_day"]) > 31:
+        return False
+    return True
+    
+def add(spartans_dict, api_data): # spartan is a dict (json data sent through postman)
     spartan_id = create_id(spartans_dict)
-    person = Spartans(
-        spartan_id,
-        spartan["first_name"],
-        spartan["last_name"],
-        spartan["birth_year"],
-        spartan["birth_month"],
-        spartan["birth_day"],
-        spartan["course"],
-        spartan["stream"]
-        )
-    spartans_dict[spartan_id] = person
-    print(spartans_dict)
-    return spartans_dict
+    if is_valid(api_data):
+        person = Spartans(
+            spartan_id,
+            api_data["first_name"],
+            api_data["last_name"],
+            api_data["birth_year"],
+            api_data["birth_month"],
+            api_data["birth_day"],
+            api_data["course"],
+            api_data["stream"]
+            )
+        spartans_dict[spartan_id] = person
+        print(spartans_dict)
+        return spartans_dict
+    else:
+        return {}
 
 def list(spartans_dict):
     spartans_json = {}

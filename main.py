@@ -21,11 +21,11 @@ def spartans():
     return list(spartans_dict)
 
 @app.route('/spartan/add', methods=['POST'])
-# curl -X POST "http://localhost:5000/spartan/add" -H 'Content-Type: application/json' -d '{"first_name": "Hasan", "last_name": "Amjad", "birth_year": 2020, "birth_month": "march", "birth_day": 1, "course": "dev", "stream": "month"}'
+# curl -X POST "http://localhost:5000/spartan/add" -H 'Content-Type: application/json' -d '{"first_name": "Hasan", "last_name": "Amjad", "birth_year": 2000, "birth_month": "3", "birth_day": 1, "course": "dev", "stream": "month"}'
 def add_spartan():
-    spartan = request.json
-    result = add(spartans_dict, spartan)
-    return list(result)
+    api_data = request.json
+    result = add(spartans_dict, api_data)
+    return list(spartans_dict)
 
     # with open(spartans_file) as file:
     #     spartans = json.load(file)
@@ -56,8 +56,8 @@ def remove_spartan():
 def get(spartan_id):
     # id = request.args.get('id')
     spartans_dict[spartan_id].__dict__
-    with open(spartans_file) as file:
-        spartans = json.load(file)
+    # with open(spartans_file) as file:
+    #     spartans = json.load(file)
 
     return json.dumps(spartans_dict[spartan_id].__dict__)
 
