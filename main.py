@@ -54,7 +54,6 @@ def remove_spartan():
 @app.route('/spartan/<spartan_id>')
 # curl -X GET "http://localhost:5000/spartan/2"
 def get(spartan_id):
-    # id = request.args.get('id')
     spartans_dict[spartan_id].__dict__
     # with open(spartans_file) as file:
     #     spartans = json.load(file)
