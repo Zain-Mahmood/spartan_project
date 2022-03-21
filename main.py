@@ -25,14 +25,13 @@ def spartans():
 def add_spartan():
     api_data = request.json
     result = add(spartans_dict, api_data)
-    return list(spartans_dict)
 
     # with open(spartans_file) as file:
     #     spartans = json.load(file)
     # spartans.update(spartan)
 
-    # with open(spartans_file, 'w') as file:
-    #     file.write(json.dumps(spartans, indent=2))
+    with open(spartans_file, 'w') as file:
+        file.write(list(spartans_dict))
 
     return list(spartans_dict)
 
@@ -46,19 +45,18 @@ def remove_spartan():
     print(spartans_dict)
     spartans_dict.pop(spartan_id)
 
-    # with open(spartans_file, 'w') as file:
-    #     file.write(json.dumps(spartans, indent=2))
+    with open(spartans_file, 'w') as file:
+        file.write(json.dumps(list(spartans_dict), indent=2))
 
     return list(spartans_dict)
 
 @app.route('/spartan/<spartan_id>')
 # curl -X GET "http://localhost:5000/spartan/2"
 def get(spartan_id):
-    spartans_dict[spartan_id].__dict__
-    # with open(spartans_file) as file:
-    #     spartans = json.load(file)
-
-    return json.dumps(spartans_dict[spartan_id].__dict__)
+    if spartan_id in spartans_dict:
+        spartans_dict[spartan_id].__dict__
+        return json.dumps(spartans_dict[spartan_id].__dict__)
+    return f'No Spartan with ID: {spartan_id}'
 
 
 
