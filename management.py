@@ -33,7 +33,7 @@ def add(spartans_dict, api_data): # spartan is a dict (json data sent through po
             api_data["course"],
             api_data["stream"]
             )
-        spartans_dict[api_data["spartan_id"]] = person
+        spartans_dict[str(api_data["spartan_id"])] = person
         print(spartans_dict)
         return spartans_dict
     else:
@@ -48,7 +48,7 @@ def list(spartans_dict):
         file_var.write("spartans list checked" + "\n")
         file_var.close()
 
-    return json.dumps(spartans_json)
+    return json.dumps(spartans_json, indent=2)
 
 def remove(spartans_dict, spartan_id):
     spartans_dict.pop(spartan_id)
