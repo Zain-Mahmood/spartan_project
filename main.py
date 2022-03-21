@@ -21,7 +21,7 @@ def spartans():
     return list(spartans_dict)
 
 @app.route('/spartan/add', methods=['POST'])
-# curl -X POST "http://localhost:5000/spartan/add" -H 'Content-Type: application/json' -d '{"first_name": "John", "last_name": "Smith", "birth_year": 2000, "birth_month": "3", "birth_day": 1, "course": "dev", "stream": "tech"}'
+# curl -X POST "http://localhost:5000/spartan/add" -H 'Content-Type: application/json' -d '{"spartan_id": 100, "first_name": "John", "last_name": "Smith", "birth_year": 2000, "birth_month": "3", "birth_day": 1, "course": "dev", "stream": "tech"}'
 def add_spartan():
     api_data = request.json
     result = add(spartans_dict, api_data)

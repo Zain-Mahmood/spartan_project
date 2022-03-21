@@ -1,11 +1,11 @@
 import json
 from spartan import Spartans
 
-def create_id(spartans_dict):
-    if spartans_dict:
-        current_id = int(max(spartans_dict.keys())) + 1
-        return str(current_id)
-    return "1"
+# def create_id(spartans_dict):
+#     if spartans_dict:
+#         current_id = int(max(spartans_dict.keys())) + 1
+#         return str(current_id)
+#     return "1"
 
 def is_valid(api_data):
     if len(api_data["first_name"]) <= 2:
@@ -21,10 +21,10 @@ def is_valid(api_data):
     return True
     
 def add(spartans_dict, api_data): # spartan is a dict (json data sent through postman)
-    spartan_id = create_id(spartans_dict)
+    # spartan_id = create_id(spartans_dict)
     if is_valid(api_data):
         person = Spartans(
-            spartan_id,
+            api_data["spartan_id"],
             api_data["first_name"],
             api_data["last_name"],
             api_data["birth_year"],
@@ -33,7 +33,7 @@ def add(spartans_dict, api_data): # spartan is a dict (json data sent through po
             api_data["course"],
             api_data["stream"]
             )
-        spartans_dict[spartan_id] = person
+        spartans_dict[api_data["spartan_id"]] = person
         print(spartans_dict)
         return spartans_dict
     else:
