@@ -34,7 +34,7 @@ def add(spartans_dict, api_data): # spartan is a dict (json data sent through po
             api_data["stream"]
             )
         spartans_dict[str(api_data["spartan_id"])] = person
-        print(spartans_dict)
+
         return spartans_dict
     else:
         return {}
@@ -57,3 +57,15 @@ def remove(spartans_dict, spartan_id):
     with open("spartanslog.txt", "at") as file_var:
         file_var.write("spartans removed" + "\n")
         file_var.close()
+
+def load_spartans(spartan_dict, json_file):
+    with open(json_file) as file:
+        spartans = json.load(file)
+    for k, v in spartans.items():
+        add(spartan_dict, v)
+
+    return spartan_dict
+
+if __name__ == '__main__':
+    spartan_dict = load_spartans({}, 'spartans.json')
+    print(spartan_dict)

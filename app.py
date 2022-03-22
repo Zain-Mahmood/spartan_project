@@ -1,11 +1,12 @@
 from textwrap import indent
 from flask import Flask, request
 import json
-from management import add, remove, list
+from management import add, remove, list, load_spartans
 
 app = Flask(__name__)
 spartans_file = 'spartans.json'
 spartans_dict = {}
+load_spartans(spartans_dict, spartans_file)
 # Save file in json format in data.json
 # 
 @app.route('/')

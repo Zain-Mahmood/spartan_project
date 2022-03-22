@@ -8,3 +8,16 @@ class Spartans:
         self.birth_day = birth_day
         self.course = course
         self.stream = stream
+
+
+if __name__ ==  '__main__':
+    spartan = Spartans(
+        100,
+        'Zain',
+        'Mahmood',
+        '1997',
+        '08',
+        '17',
+        'ChemEng',
+        '2016'
+    )
