@@ -34,7 +34,8 @@ def add_spartan():
     with open(spartans_file, 'w') as file:
         file.write(list(spartans_dict))
 
-    return list(spartans_dict)
+    # return list(spartans_dict)
+    return f'Added Spartan with id: {api_data["spartan_id"]}'
 
 @app.route('/spartan/remove', methods=['POST'])
 # curl -X POST "http://localhost:5000/spartan/remove?id=2"
@@ -44,12 +45,15 @@ def remove_spartan():
     # with open(spartans_file) as file:
     #     spartans = json.load(file)
     print(spartans_dict)
-    spartans_dict.pop(spartan_id)
+    if spartan_id in spartans_dict:
+        spartans_dict.pop(spartan_id)
 
-    with open(spartans_file, 'w') as file:
-        file.write(json.dumps(list(spartans_dict), indent=2))
+        with open(spartans_file, 'w') as file:
+            file.write(list(spartans_dict))
 
-    return list(spartans_dict)
+        # return list(spartans_dict)
+        return f'Removed Spartan with id: {spartan_id}'
+    return f'No Spartan with ID: {spartan_id}'
 
 @app.route('/spartan/<spartan_id>')
 # curl -X GET "http://localhost:5000/spartan/2"
